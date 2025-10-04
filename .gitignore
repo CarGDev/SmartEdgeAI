@@ -1,0 +1,14 @@
+# keep logs; ignore the heavyweight gem5 artifacts if they get huge
+results/*/m5out
+results/*/config.json
+results/*/config.ini.bak
+results/*/*.checkpoints/
+# but DO NOT ignore stats or figures:
+!results/*/stats.txt
+!results/*.csv
+!results/*.png
+
+# python cache
+__pycache__/
+*.pyc
+
