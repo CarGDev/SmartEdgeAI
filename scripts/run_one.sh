@@ -31,6 +31,12 @@ fi
   > "$LOG_DATA/${TAG}.stdout.log" \
   2> "$LOG_DATA/${TAG}.stderr.log"
 
+# Copy stats from m5out to our output directory
+if [ -f "m5out/stats.txt" ]; then
+  cp m5out/stats.txt "$OUTDIR/"
+  echo "[run_one] Copied stats.txt from m5out to $OUTDIR"
+fi
+
 # mirror to repo
 rsync -a --delete "$OUTDIR/" "$OUT_IOT/$TAG/"
 rsync -a "$LOG_DATA/${TAG}."* "$LOG_IOT/" 2>/dev/null || true
