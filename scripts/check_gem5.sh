@@ -29,9 +29,9 @@ fi
 echo "[check_gem5] ✓ gem5 binary found at $GEM5_BIN"
 
 # Check if gem5 runs
-if ! "$GEM5_BIN" --version >/dev/null 2>&1; then
+if ! "$GEM5_BIN" --help >/dev/null 2>&1; then
     echo "[check_gem5] ERROR: gem5 binary exists but cannot run"
-    echo "[check_gem5] Try running: $GEM5_BIN --version"
+    echo "[check_gem5] Try running: $GEM5_BIN --help"
     exit 1
 fi
 
