@@ -6,7 +6,7 @@ SRC="$ROOT/gem5src/gem5"
 IOT="$ROOT/iot"
 DATA="$ROOT/gem5-data"                   # persistent (symlink to /mnt/storage/…)
 RUN="$ROOT/gem5-run"                     # workloads
-CFG="$(dirname "$0")/hetero_big_little.py"
+CFG="$(dirname "$0")/simple_config.py"
 
 # --- build target (ARM by default) ---
 # Updated path based on tree.log analysis: ../gem5src/gem5/build/ARM/gem5.opt
