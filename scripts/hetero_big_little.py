@@ -45,9 +45,15 @@ elif args.core == "hybrid":
 # -------------------------------
 # Cache hierarchy
 # -------------------------------
-class L1I(Cache): size = "32kB"
-class L1D(Cache): size = "32kB"
-class L2(Cache):  size = args.l2
+class L1I(Cache): 
+    size = "32kB"
+    assoc = 2
+class L1D(Cache): 
+    size = "32kB"
+    assoc = 2
+class L2(Cache):  
+    size = args.l2
+    assoc = 8
 
 system.l2bus = L2XBar()
 for c in system.cpu:
