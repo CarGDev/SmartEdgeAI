@@ -48,12 +48,29 @@ elif args.core == "hybrid":
 class L1I(Cache): 
     size = "32kB"
     assoc = 2
+    tag_latency = 1
+    data_latency = 1
+    response_latency = 1
+    mshrs = 4
+    tgts_per_mshr = 20
+
 class L1D(Cache): 
     size = "32kB"
     assoc = 2
+    tag_latency = 1
+    data_latency = 1
+    response_latency = 1
+    mshrs = 4
+    tgts_per_mshr = 20
+
 class L2(Cache):  
     size = args.l2
     assoc = 8
+    tag_latency = 10
+    data_latency = 10
+    response_latency = 1
+    mshrs = 20
+    tgts_per_mshr = 12
 
 system.l2bus = L2XBar()
 for c in system.cpu:
