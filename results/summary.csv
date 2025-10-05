@@ -1,0 +1,3 @@
+workload,core,dvfs,l2,drowsy,sim_seconds,ipc,cycles,insts,l2_miss_rate
+tinyml,kws,big,1MB,0,,,,,
+tinyml,kws,big,512kB,0,,,,,
