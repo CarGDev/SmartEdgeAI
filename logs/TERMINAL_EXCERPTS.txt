@@ -1,0 +1,42 @@
+===== tinyml_kws_big_high_l21MB_d0.stdout.log =====
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 23.0.0.1
+gem5 compiled Oct  5 2025 02:20:13
+gem5 started Oct  5 2025 03:44:26
+gem5 executing on cargdevgpu, pid 2685205
+command line: /home/carlos/projects/gem5/build/ARM/gem5.opt /home/carlos/projects/gem5/gem5src/gem5/configs/example/arm/starter_se.py --cmd=/home/carlos/projects/gem5/gem5-run/tinyml_kws --mem=16GB --dvfs=high --drowsy=0 --l2=1MB --outdir=/home/carlos/projects/gem5/gem5-data/SmartEdgeAI/results/tinyml_kws_big_high_l21MB_d0
+
+...
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 23.0.0.1
+gem5 compiled Oct  5 2025 02:20:13
+gem5 started Oct  5 2025 03:44:26
+gem5 executing on cargdevgpu, pid 2685205
+command line: /home/carlos/projects/gem5/build/ARM/gem5.opt /home/carlos/projects/gem5/gem5src/gem5/configs/example/arm/starter_se.py --cmd=/home/carlos/projects/gem5/gem5-run/tinyml_kws --mem=16GB --dvfs=high --drowsy=0 --l2=1MB --outdir=/home/carlos/projects/gem5/gem5-data/SmartEdgeAI/results/tinyml_kws_big_high_l21MB_d0
+
+
+===== tinyml_kws_big_high_l2512kB_d0.stdout.log =====
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 23.0.0.1
+gem5 compiled Oct  5 2025 02:20:13
+gem5 started Oct  5 2025 03:44:47
+gem5 executing on cargdevgpu, pid 2685597
+command line: /home/carlos/projects/gem5/build/ARM/gem5.opt /home/carlos/projects/gem5/gem5src/gem5/configs/example/arm/starter_se.py --cmd=/home/carlos/projects/gem5/gem5-run/tinyml_kws --mem=16GB --dvfs=high --drowsy=0 --l2=512kB --outdir=/home/carlos/projects/gem5/gem5-data/SmartEdgeAI/results/tinyml_kws_big_high_l2512kB_d0
+
+...
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 23.0.0.1
+gem5 compiled Oct  5 2025 02:20:13
+gem5 started Oct  5 2025 03:44:47
+gem5 executing on cargdevgpu, pid 2685597
+command line: /home/carlos/projects/gem5/build/ARM/gem5.opt /home/carlos/projects/gem5/gem5src/gem5/configs/example/arm/starter_se.py --cmd=/home/carlos/projects/gem5/gem5-run/tinyml_kws --mem=16GB --dvfs=high --drowsy=0 --l2=512kB --outdir=/home/carlos/projects/gem5/gem5-data/SmartEdgeAI/results/tinyml_kws_big_high_l2512kB_d0
+
+
