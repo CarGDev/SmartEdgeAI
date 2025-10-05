@@ -14,7 +14,7 @@ OUTDIR="$OUT_DATA/$TAG"
 mkdir -p "$OUTDIR"
 echo "[run_one] $TAG mem=$MEM -> $OUTDIR"
 
-"$GEM5" "$CFG" \
+"$GEM5_BIN" "$CFG" \
   --cmd="$RUN/$W" \
   --mem="$MEM" \
   --dvfs="$DV" \
@@ -24,7 +24,7 @@ echo "[run_one] $TAG mem=$MEM -> $OUTDIR"
   > "$LOG_DATA/${TAG}.stdout.log" \
   2> "$LOG_DATA/${TAG}.stderr.log"
 
-# mirror to repo (iot/)
+# mirror to repo
 rsync -a --delete "$OUTDIR/" "$OUT_IOT/$TAG/"
 rsync -a "$LOG_DATA/${TAG}."* "$LOG_IOT/" 2>/dev/null || true
 
