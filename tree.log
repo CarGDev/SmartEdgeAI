@@ -14,7 +14,10 @@
 │   ├── fig_tinyml_edp.png
 │   ├── summary.csv
 │   ├── summary_energy.csv
-│   └── tinyml_kws_big_high_l21MB_d0
+│   ├── tinyml_kws_big_high_l21MB_d0
+│   │   └── stats.txt
+│   └── tinyml_kws_big_high_l2512kB_d0
+│       └── stats.txt
 ├── scripts
 │   ├── build_gem5.sh
 │   ├── bundle_logs.sh
@@ -23,6 +26,7 @@
 │   ├── env.sh
 │   ├── extract_csv.sh
 │   ├── hetero_big_little.py
+│   ├── hetero_big_little.py.bak
 │   ├── plot_edp_tinyml.py
 │   ├── plot_epi.py
 │   ├── run_one.sh
@@ -30,7 +34,7 @@
 │   └── tinyml_kws.sh
 └── tree.log
 
-7 directories, 24 files
+8 directories, 27 files
 ../gem5-data/SmartEdgeAI
 ├── logs
 │   ├── tinyml_kws_big_high_l21MB_d0.stderr.log
@@ -40,6 +44,8 @@
 └── results
     ├── summary.csv
     ├── tinyml_kws_big_high_l21MB_d0
+    │   └── stats.txt
     └── tinyml_kws_big_high_l2512kB_d0
+        └── stats.txt
 
-5 directories, 5 files
+5 directories, 7 files
