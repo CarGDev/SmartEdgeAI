@@ -98,7 +98,7 @@ for i in range(1, len(system.cpu)):
 # -------------------------------
 # Stats configuration
 # -------------------------------
-m5.stats.addStatVisitor(m5.stats.TextStatsVisitor(args.outdir + "/stats.txt"))
+# Note: Stats will be automatically written to stats.txt in the output directory
 
 # -------------------------------
 # Instantiate and simulate
