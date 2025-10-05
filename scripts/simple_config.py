@@ -45,7 +45,13 @@ system.mem_ctrl.port = system.membus.mem_side_ports
 system.system_port = system.membus.cpu_side_ports
 
 # Create workload
-system.cpu.workload = SEWorkload.init_compatible(args.cmd)
+process = Process()
+process.executable = args.cmd
+process.cmd = [args.cmd]
+
+# Create Linux workload
+system.cpu.workload = SEWorkload.init_compatible("hello")
+system.cpu.workload.executable = args.cmd
 system.cpu.createThreads()
 
 # Create root and run simulation
