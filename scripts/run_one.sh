@@ -14,13 +14,13 @@ OUTDIR="$OUT_DATA/$TAG"
 mkdir -p "$OUTDIR"
 echo "[run_one] $TAG mem=$MEM -> $OUTDIR"
 
-# Map core types to starter_se.py CPU types
+# Map core types to baremetal.py CPU types
 if [ "$CORE" = "big" ]; then
-  CPU_TYPE="minor"  # Using minor as closest to O3CPU
+  CPU_TYPE="o3"  # Using o3 as closest to O3CPU
 elif [ "$CORE" = "little" ]; then
   CPU_TYPE="atomic"  # Using atomic as closest to TimingSimpleCPU
 else
-  CPU_TYPE="minor"  # Default for hybrid
+  CPU_TYPE="o3"  # Default for hybrid
 fi
 
 # Map DVFS to CPU frequency (simplified)
@@ -31,11 +31,12 @@ else
 fi
 
 "$GEM5_BIN" "$CFG" \
+  --kernel="$RUN/$W" \
+  --workload=ArmBaremetal \
   --cpu="$CPU_TYPE" \
   --cpu-freq="$CPU_FREQ" \
   --mem-type=DDR3_1600_8x8 \
   --mem-size="$MEM" \
-  "$RUN/$W" \
   > "$LOG_DATA/${TAG}.stdout.log" \
   2> "$LOG_DATA/${TAG}.stderr.log"
 

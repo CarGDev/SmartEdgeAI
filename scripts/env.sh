@@ -6,7 +6,7 @@ SRC="$ROOT/gem5src/gem5"
 IOT="$ROOT/iot"
 DATA="$ROOT/gem5-data"                   # persistent (symlink to /mnt/storage/…)
 RUN="$ROOT/gem5-run"                     # workloads
-CFG="/home/carlos/projects/gem5/gem5src/gem5/configs/example/arm/starter_se.py"
+CFG="/home/carlos/projects/gem5/gem5src/gem5/configs/example/arm/baremetal.py"
 
 # --- build target (ARM by default) ---
 # Updated path based on tree.log analysis: ../gem5src/gem5/build/ARM/gem5.opt
