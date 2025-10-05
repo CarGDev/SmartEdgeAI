@@ -16,6 +16,10 @@ E_MEM_PJ = 600.0
 DROWSY_SCALE = 0.85
 
 rows = []
+if not os.path.exists(src):
+    print(f"[energy] ERROR: Source file {src} does not exist")
+    exit(1)
+
 with open(src) as f:
     r = csv.DictReader(f)
     for row in r:
@@ -42,6 +46,10 @@ with open(src) as f:
             }
         )
         rows.append(row)
+
+if not rows:
+    print(f"[energy] ERROR: No data found in {src}")
+    exit(1)
 
 for path in (dst_data, dst_iot):
     with open(path, "w", newline="") as f:

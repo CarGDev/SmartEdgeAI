@@ -12,7 +12,7 @@ for d in "$OUT_DATA"/*; do
   W=$(echo "$base" | cut -d'_' -f1)
   CORE=$(echo "$base" | cut -d'_' -f2)
   DVFS=$(echo "$base" | cut -d'_' -f3)
-  L2=$(echo "$base"  | sed -E 's/.*_l2([^_]+).*/\1/')
+  L2=$(echo "$base"  | sed -E 's/.*l2([^_]+).*/\1/')
   DROW=$(echo "$base" | sed -E 's/.*_d([01]).*/\1/')
   S="$d/stats.txt"
 

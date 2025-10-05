@@ -15,6 +15,8 @@ ap.add_argument("--mem", default="16GB")
 ap.add_argument("--l2", default="1MB")
 ap.add_argument("--dvfs", choices=["high","low"], default="high")
 ap.add_argument("--drowsy", type=int, choices=[0,1], default=0)
+ap.add_argument("--core", choices=["big","little","hybrid"], default="big")
+ap.add_argument("--outdir", default="m5out")
 args = ap.parse_args()
 
 # -------------------------------
@@ -30,12 +32,15 @@ system = System(
 )
 
 # -------------------------------
-# CPU cluster: 1 big + 2 little
+# CPU cluster: Configure based on core type
 # -------------------------------
-big = O3CPU(cpu_id=0)
-little1 = TimingSimpleCPU(cpu_id=1)
-little2 = TimingSimpleCPU(cpu_id=2)
-system.cpu = [big, little1, little2]
+if args.core == "big":
+    system.cpu = [O3CPU(cpu_id=0)]
+elif args.core == "little":
+    system.cpu = [TimingSimpleCPU(cpu_id=0)]
+elif args.core == "hybrid":
+    # 1 big + 1 little
+    system.cpu = [O3CPU(cpu_id=0), TimingSimpleCPU(cpu_id=1)]
 
 # -------------------------------
 # Cache hierarchy
@@ -80,9 +85,20 @@ proc = Process()
 proc.executable = args.cmd
 proc.cmd = [args.cmd]
 proc.env = {'GLIBC_TUNABLES': 'glibc.pthread.rseq=0'}
-for c in system.cpu:
-    c.workload = proc
-    c.createThreads()
+
+# Only assign workload to the first CPU (primary execution)
+system.cpu[0].workload = proc
+system.cpu[0].createThreads()
+
+# Other CPUs remain idle
+for i in range(1, len(system.cpu)):
+    system.cpu[i].workload = SEWorkload.init_compatible("hello")
+    system.cpu[i].createThreads()
+
+# -------------------------------
+# Stats configuration
+# -------------------------------
+m5.stats.addStatVisitor(m5.stats.TextStatsVisitor(args.outdir + "/stats.txt"))
 
 # -------------------------------
 # Instantiate and simulate

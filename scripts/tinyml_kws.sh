@@ -1,8 +1,11 @@
-cat > /home/carlos/projects/gem5/gem5-run/tinyml_kws << 'SH'
 #!/bin/bash
-# placeholder workload; swap later for your real binary
-for i in $(seq 1 2000000); do :; done
-echo "tinyml_kws: done"
-SH
-chmod +x /home/carlos/projects/gem5/gem5-run/tinyml_kws
+set -eu
+. "$(dirname "$0")/env.sh"
+
+# Compile the actual tinyml_kws workload
+echo "[tinyml_kws] Compiling workload..."
+arm-linux-gnueabihf-gcc -O2 -static -o "$RUN/tinyml_kws" \
+  "$(dirname "$0")/../workloads/tinyml_kws.c" -lm
+
+echo "[tinyml_kws] Binary created at $RUN/tinyml_kws"
 
