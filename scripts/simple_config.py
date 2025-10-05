@@ -49,10 +49,8 @@ process = Process()
 process.executable = args.cmd
 process.cmd = [args.cmd]
 
-# Create Linux workload and set the executable
-system.cpu.workload = SEWorkload.init_compatible("hello")
-system.cpu.workload.executable = args.cmd
-system.cpu.workload.cmd = [args.cmd]
+# Assign workload to CPU
+system.cpu.workload = process
 system.cpu.createThreads()
 
 # Create root and run simulation
