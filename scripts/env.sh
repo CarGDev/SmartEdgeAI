@@ -6,7 +6,7 @@ SRC="$ROOT/gem5src/gem5"
 IOT="$ROOT/iot"
 DATA="$ROOT/gem5-data"                   # persistent (symlink to /mnt/storage/…)
 RUN="$ROOT/gem5-run"                     # workloads
-CFG="$ROOT/scripts/11_hetero_big_little.py" # gem5 config
+CFG="$IOT/scripts/hetero_big_little.py" # gem5 config
 
 # --- build target (ARM by default) ---
 GEM5_BIN="$ROOT/build/ARM/gem5.opt"

@@ -1,6 +1,6 @@
 #!/bin/bash
 set -eu
-. "$(dirname "$0")/00_env.sh"
+. "$(dirname "$0")/env.sh"
 
 CSV_DATA="$OUT_DATA/summary.csv"
 CSV_IOT="$OUT_IOT/summary.csv"
