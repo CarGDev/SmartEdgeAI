@@ -6,11 +6,11 @@ SRC="$ROOT/gem5src/gem5"
 IOT="$ROOT/iot"
 DATA="$ROOT/gem5-data"                   # persistent (symlink to /mnt/storage/…)
 RUN="$ROOT/gem5-run"                     # workloads
-CFG="/home/carlos/projects/gem5/gem5src/gem5/configs/example/arm/baremetal.py"
+# Use X86 configuration for IoT LLM simulation
+CFG="/home/carlos/projects/gem5/gem5src/gem5/configs/example/gem5_library/x86-ubuntu-run.py"
 
-# --- build target (ARM by default) ---
-# Updated path based on tree.log analysis: ../gem5src/gem5/build/ARM/gem5.opt
-GEM5_BIN="$ROOT/gem5src/gem5/build/ARM/gem5.opt"
+# --- build target (X86 for IoT LLM simulation) ---
+GEM5_BIN="$ROOT/gem5src/gem5/build/X86/gem5.opt"
 
 # --- auto-build if missing (non-interactive: sends newline to accept hooks prompt) ---
 if [ ! -x "$GEM5_BIN" ]; then

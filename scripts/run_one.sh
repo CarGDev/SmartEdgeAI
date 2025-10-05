@@ -14,29 +14,20 @@ OUTDIR="$OUT_DATA/$TAG"
 mkdir -p "$OUTDIR"
 echo "[run_one] $TAG mem=$MEM -> $OUTDIR"
 
-# Map core types to baremetal.py CPU types
+# For IoT LLM simulation with x86-ubuntu-run.py
+# Map core types to CPU types (simplified for IoT)
 if [ "$CORE" = "big" ]; then
-  CPU_TYPE="o3"  # Using o3 as closest to O3CPU
+  CPU_TYPE="O3CPU"
 elif [ "$CORE" = "little" ]; then
-  CPU_TYPE="atomic"  # Using atomic as closest to TimingSimpleCPU
+  CPU_TYPE="TimingSimpleCPU"
 else
-  CPU_TYPE="o3"  # Default for hybrid
-fi
-
-# Map DVFS to CPU frequency (simplified)
-if [ "$DV" = "high" ]; then
-  CPU_FREQ="2GHz"
-else
-  CPU_FREQ="1GHz"
+  CPU_TYPE="O3CPU"  # Default for hybrid
 fi
 
 "$GEM5_BIN" "$CFG" \
-  --kernel="$RUN/$W" \
-  --workload=ArmBaremetal \
-  --cpu="$CPU_TYPE" \
-  --cpu-freq="$CPU_FREQ" \
-  --mem-type=DDR3_1600_8x8 \
+  --command="$RUN/$W" \
   --mem-size="$MEM" \
+  --cpu-type="$CPU_TYPE" \
   > "$LOG_DATA/${TAG}.stdout.log" \
   2> "$LOG_DATA/${TAG}.stderr.log"
 
