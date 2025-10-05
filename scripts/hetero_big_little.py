@@ -55,13 +55,13 @@ for c in system.cpu:
     c.dcache = L1D()
     c.icache.cpu_side = c.icache_port
     c.dcache.cpu_side = c.dcache_port
-    c.icache.mem_side = system.l2bus.slave
-    c.dcache.mem_side = system.l2bus.slave
+    c.icache.mem_side = system.l2bus.cpu_side_ports
+    c.dcache.mem_side = system.l2bus.cpu_side_ports
 
 system.l2 = L2()
 system.membus = SystemXBar()
-system.l2.cpu_side = system.l2bus.master
-system.l2.mem_side = system.membus.slave
+system.l2.cpu_side = system.l2bus.mem_side_ports
+system.l2.mem_side = system.membus.cpu_side_ports
 
 # -------------------------------
 # Drowsy cache behavior
@@ -75,8 +75,8 @@ if args.drowsy:
 # -------------------------------
 system.mem_ctrl = DDR3_1600_8x8()
 system.mem_ctrl.range = system.mem_ranges[0]
-system.mem_ctrl.port = system.membus.master
-system.system_port = system.membus.slave
+system.mem_ctrl.port = system.membus.mem_side_ports
+system.system_port = system.membus.cpu_side_ports
 
 # -------------------------------
 # Workload setup
