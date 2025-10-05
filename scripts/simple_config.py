@@ -17,7 +17,7 @@ args = ap.parse_args()
 # Create system
 system = System()
 system.clk_domain = SrcClockDomain(clock="2GHz" if args.dvfs == "high" else "1GHz", 
-                                   voltage_domain=VoltageDomain())
+                                   voltage_domain=VoltageDomain(voltage="1.0V" if args.dvfs == "high" else "0.8V"))
 system.mem_mode = "timing"
 system.mem_ranges = [AddrRange(args.mem)]
 
