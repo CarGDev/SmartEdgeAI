@@ -1,6 +1,6 @@
 #!/bin/bash
 set -eu
-. "$(dirname "$0")/env.sh"
+. "$(dirname "$0")/00_env.sh"
 
 TE="$LOG_DATA/TERMINAL_EXCERPTS.txt"
 SE="$LOG_DATA/STATS_EXCERPTS.txt"

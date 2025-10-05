@@ -1,6 +1,6 @@
 #!/bin/bash
 set -eu
-source "$(dirname "$0")/00_env.sh"
+. "$(dirname "$0")/00_env.sh"
 
 run_case () {
   local W=$1 CORE=$2 DV=$3 D=$4 L2=$5 MEM=16GB
