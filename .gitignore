@@ -8,6 +8,9 @@ results/*/*.checkpoints/
 !results/*.csv
 !results/*.png
 
+*.log
+*.logs
+
 # python cache
 __pycache__/
 *.pyc
