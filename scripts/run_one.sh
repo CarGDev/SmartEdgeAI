@@ -14,13 +14,28 @@ OUTDIR="$OUT_DATA/$TAG"
 mkdir -p "$OUTDIR"
 echo "[run_one] $TAG mem=$MEM -> $OUTDIR"
 
+# Map core types to starter_se.py CPU types
+if [ "$CORE" = "big" ]; then
+  CPU_TYPE="minor"  # Using minor as closest to O3CPU
+elif [ "$CORE" = "little" ]; then
+  CPU_TYPE="atomic"  # Using atomic as closest to TimingSimpleCPU
+else
+  CPU_TYPE="minor"  # Default for hybrid
+fi
+
+# Map DVFS to CPU frequency (simplified)
+if [ "$DV" = "high" ]; then
+  CPU_FREQ="2GHz"
+else
+  CPU_FREQ="1GHz"
+fi
+
 "$GEM5_BIN" "$CFG" \
-  --cmd="$RUN/$W" \
-  --mem="$MEM" \
-  --dvfs="$DV" \
-  --drowsy="$DROWSY" \
-  --l2="$L2" \
-  --outdir="$OUTDIR" \
+  --cpu="$CPU_TYPE" \
+  --cpu-freq="$CPU_FREQ" \
+  --mem-type=DDR3_1600_8x8 \
+  --mem-size="$MEM" \
+  "$RUN/$W" \
   > "$LOG_DATA/${TAG}.stdout.log" \
   2> "$LOG_DATA/${TAG}.stderr.log"
 
