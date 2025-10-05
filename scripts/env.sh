@@ -9,7 +9,8 @@ RUN="$ROOT/gem5-run"                     # workloads
 CFG="$ROOT/gem5src/gem5/configs/example/arm/starter_se.py"
 
 # --- build target (ARM by default) ---
-GEM5_BIN="$ROOT/build/ARM/gem5.opt"
+# Updated path based on tree.log analysis: ../gem5src/gem5/build/ARM/gem5.opt
+GEM5_BIN="$ROOT/gem5src/gem5/build/ARM/gem5.opt"
 
 # --- auto-build if missing (non-interactive: sends newline to accept hooks prompt) ---
 if [ ! -x "$GEM5_BIN" ]; then

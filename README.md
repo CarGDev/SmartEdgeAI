@@ -28,7 +28,18 @@ sudo apt-get install gcc-arm-linux-gnueabihf
 brew install gcc-arm-linux-gnueabihf
 ```
 
-## Order of operations
+## Quick Start (Run Everything)
+
+To run the complete workflow automatically:
+
+```bash
+chmod +x run_all.sh
+sh run_all.sh
+```
+
+This will execute all steps in sequence with error checking and progress reporting.
+
+## Manual Steps (Order of operations)
 
 ### 0. Check Prerequisites
 ```bash
@@ -117,7 +128,7 @@ head -5 results/phase3_drowsy_deltas.csv
 ```
 
 ## Paths assumed
-- gem5 binary: `/home/carlos/projects/gem5/build/ARM/gem5.opt`
+- gem5 binary: `/home/carlos/projects/gem5/gem5src/gem5/build/ARM/gem5.opt` (updated from tree.log analysis)
 - config:      `scripts/hetero_big_little.py`
 - workloads:   `/home/carlos/projects/gem5/gem5-run/{tinyml_kws,sensor_fusion,aes_ccm,attention_kernel}`
 
@@ -132,7 +143,7 @@ head -5 results/phase3_drowsy_deltas.csv
 **Empty stats.txt files (0 bytes)**
 - **Cause**: gem5 binary doesn't exist or simulation failed
 - **Solution**: Run `sh scripts/check_gem5.sh` and install gem5 if needed
-- **Check**: `ls -la /home/carlos/projects/gem5/build/ARM/gem5.opt`
+- **Check**: `ls -la /home/carlos/projects/gem5/gem5src/gem5/build/ARM/gem5.opt`
 
 **CSV extraction shows empty values**
 - **Cause**: Simulation didn't run, so no statistics were generated
