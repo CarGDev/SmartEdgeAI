@@ -75,7 +75,7 @@ if args.drowsy:
 # -------------------------------
 system.mem_ctrl = DDR3_1600_8x8()
 system.mem_ctrl.range = system.mem_ranges[0]
-system.mem_ctrl.port = system.membus.mem_side_ports
+system.mem_ctrl.mem_side_port = system.membus.mem_side_ports
 system.system_port = system.membus.cpu_side_ports
 
 # -------------------------------
