@@ -1,10 +1,13 @@
 #!/usr/bin/env python3
-import csv, os
+import os, csv
 import matplotlib.pyplot as plt
 
-root = os.path.dirname(os.path.dirname(__file__))
-src = os.path.join(root, "results", "phase3_summary_energy.csv")
-out = os.path.join(root, "results", "fig_tinyml_edp.png")
+ROOT="/home/carlos/projects/gem5"
+OUT_DATA=os.path.join(ROOT,"gem5-data","SmartEdgeAI","results")
+OUT_IOT =os.path.join(ROOT,"iot","results")
+src=os.path.join(OUT_DATA,"summary_energy.csv")
+out_data=os.path.join(OUT_DATA,"fig_tinyml_edp.png")
+out_iot =os.path.join(OUT_IOT ,"fig_tinyml_edp.png")
 
 labels=[]; edps=[]
 with open(src) as f:
@@ -19,7 +22,6 @@ plt.bar(labels, edps)
 plt.ylabel('EDP (J·s)')
 plt.title('TinyML: EDP by configuration')
 plt.xticks(rotation=60, ha='right')
-plt.tight_layout()
-plt.savefig(out)
-print(f"[plot] wrote {out}")
+plt.tight_layout(); plt.savefig(out_data); plt.savefig(out_iot)
+print(f"[plot] wrote {out_data} and mirrored to {out_iot}")
 

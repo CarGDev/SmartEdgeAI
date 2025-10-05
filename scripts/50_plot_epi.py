@@ -1,13 +1,16 @@
 #!/usr/bin/env python3
-import csv, os
+import os, csv
 import matplotlib.pyplot as plt
 from collections import defaultdict
 
-root = os.path.dirname(os.path.dirname(__file__))
-src = os.path.join(root, "results", "phase3_summary_energy.csv")
-out = os.path.join(root, "results", "fig_epi_across_workloads.png")
+ROOT="/home/carlos/projects/gem5"
+OUT_DATA=os.path.join(ROOT,"gem5-data","SmartEdgeAI","results")
+OUT_IOT =os.path.join(ROOT,"iot","results")
+src=os.path.join(OUT_DATA,"summary_energy.csv")
+out_data=os.path.join(OUT_DATA,"fig_epi_across_workloads.png")
+out_iot =os.path.join(OUT_IOT ,"fig_epi_across_workloads.png")
 
-epi_by_core = defaultdict(list)
+epi_by_core=defaultdict(list)
 with open(src) as f:
     r=csv.DictReader(f)
     for row in r:
@@ -21,8 +24,7 @@ vals=[sum(epi_by_core[c])/max(1,len(epi_by_core[c])) for c in cores]
 plt.figure()
 plt.bar(cores, vals)
 plt.ylabel('EPI (pJ/inst)')
-plt.title('Energy per Instruction across Workloads (avg by core mode)')
-plt.tight_layout()
-plt.savefig(out)
-print(f"[plot] wrote {out}")
+plt.title('Energy per Instruction across workloads (avg by core mode)')
+plt.tight_layout(); plt.savefig(out_data); plt.savefig(out_iot)
+print(f"[plot] wrote {out_data} and mirrored to {out_iot}")
 
