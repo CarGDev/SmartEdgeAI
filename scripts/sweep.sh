@@ -1,10 +1,10 @@
 #!/bin/bash
 set -eu
-. "$(dirname "$0")/00_env.sh"
+. "$(dirname "$0")/env.sh"
 
 run_case () {
   local W=$1 CORE=$2 DV=$3 D=$4 L2=$5 MEM=16GB
-  bash "$(dirname "$0")/10_run_one.sh" "$W" "$CORE" "$DV" "$D" "$L2" "$MEM"
+  bash "$(dirname "$0")/run_one.sh" "$W" "$CORE" "$DV" "$D" "$L2" "$MEM"
 }
 
 for W in tinyml_kws sensor_fusion aes_ccm attention_kernel; do

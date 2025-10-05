@@ -1,6 +1,6 @@
 #!/bin/bash
 set -eu
-. "$(dirname "$0")/00_env.sh"
+. "$(dirname "$0")/env.sh"
 
 if [ $# -lt 5 ]; then
   echo "Usage: $0 <workload:{tinyml_kws|sensor_fusion|aes_ccm|attention_kernel}> <core:{big|little|hybrid}> <dvfs:{high|low}> <drowsy:{0|1}> <l2:{512kB|1MB}> [mem=16GB]"
