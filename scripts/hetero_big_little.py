@@ -45,43 +45,16 @@ elif args.core == "hybrid":
 # -------------------------------
 # Cache hierarchy
 # -------------------------------
-class L1I(Cache): 
-    size = "32kB"
-    assoc = 2
-    tag_latency = 1
-    data_latency = 1
-    response_latency = 1
-    mshrs = 4
-    tgts_per_mshr = 20
-
-class L1D(Cache): 
-    size = "32kB"
-    assoc = 2
-    tag_latency = 1
-    data_latency = 1
-    response_latency = 1
-    mshrs = 4
-    tgts_per_mshr = 20
-
-class L2(Cache):  
-    size = args.l2
-    assoc = 8
-    tag_latency = 10
-    data_latency = 10
-    response_latency = 1
-    mshrs = 20
-    tgts_per_mshr = 12
-
 system.l2bus = L2XBar()
 for c in system.cpu:
-    c.icache = L1I()
-    c.dcache = L1D()
+    c.icache = Cache(size="32kB", assoc=2)
+    c.dcache = Cache(size="32kB", assoc=2)
     c.icache.cpu_side = c.icache_port
     c.dcache.cpu_side = c.dcache_port
     c.icache.mem_side = system.l2bus.slave
     c.dcache.mem_side = system.l2bus.slave
 
-system.l2 = L2()
+system.l2 = Cache(size=args.l2, assoc=8)
 system.membus = SystemXBar()
 system.l2.cpu_side = system.l2bus.master
 system.l2.mem_side = system.membus.slave
