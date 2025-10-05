@@ -2,7 +2,39 @@
 
 This repo holds **all scripts, commands, and logs** for Phase 3.
 
+## Prerequisites
+
+### Install gem5
+Before running any simulations, you need to install and build gem5:
+
+```bash
+# Clone gem5 repository
+git clone https://github.com/gem5/gem5.git /home/carlos/projects/gem5/gem5src/gem5
+
+# Build gem5 for ARM
+cd /home/carlos/projects/gem5/gem5src/gem5
+scons build/ARM/gem5.opt -j$(nproc)
+
+# Verify installation
+sh scripts/check_gem5.sh
+```
+
+### Install ARM Cross-Compiler
+```bash
+# Ubuntu/Debian
+sudo apt-get install gcc-arm-linux-gnueabihf
+
+# macOS (if using Homebrew)
+brew install gcc-arm-linux-gnueabihf
+```
+
 ## Order of operations
+
+### 0. Check Prerequisites
+```bash
+sh scripts/check_gem5.sh
+```
+**Check logs**: Should show "✓ All checks passed!" or installation instructions
 
 ### 1. Setup Environment
 ```bash
@@ -94,8 +126,35 @@ head -5 results/phase3_drowsy_deltas.csv
 - **Logs**: `/home/carlos/projects/gem5/gem5-data/SmartEdgeAI/logs/` (mirrored to `logs/`)
 
 ## Troubleshooting
-- **Empty stats.txt**: Check gem5 simulation logs for errors
-- **Missing binaries**: Re-run `scripts/build_workloads.sh`
-- **Permission errors**: Ensure scripts are executable: `chmod +x scripts/*.sh`
-- **Path issues**: Verify `ROOT` variable in `scripts/env.sh` points to correct gem5 installation
+
+### Common Issues
+
+**Empty stats.txt files (0 bytes)**
+- **Cause**: gem5 binary doesn't exist or simulation failed
+- **Solution**: Run `sh scripts/check_gem5.sh` and install gem5 if needed
+- **Check**: `ls -la /home/carlos/projects/gem5/build/ARM/gem5.opt`
+
+**CSV extraction shows empty values**
+- **Cause**: Simulation didn't run, so no statistics were generated
+- **Solution**: Fix gem5 installation first, then re-run simulations
+
+**"ModuleNotFoundError: No module named 'matplotlib'"**
+- **Solution**: Install matplotlib: `pip install matplotlib` or `sudo apt-get install python3-matplotlib`
+
+**"ValueError: could not convert string to float: ''"**
+- **Cause**: Empty CSV values from failed simulations
+- **Solution**: Fixed in updated scripts - they now handle empty values gracefully
+
+**Permission errors**
+- **Solution**: Make scripts executable: `chmod +x scripts/*.sh`
+
+**Path issues**
+- **Solution**: Verify `ROOT` variable in `scripts/env.sh` points to correct gem5 installation
+
+### Debugging Steps
+1. **Check gem5 installation**: `sh scripts/check_gem5.sh`
+2. **Verify workload binaries**: `ls -la /home/carlos/projects/gem5/gem5-run/`
+3. **Test single simulation**: `sh scripts/run_one.sh tinyml_kws big high 0 1MB`
+4. **Check simulation logs**: `cat logs/tinyml_kws_big_high_l21MB_d0.stdout.log`
+5. **Verify stats output**: `ls -l /home/carlos/projects/gem5/gem5-data/SmartEdgeAI/results/tinyml_kws_big_high_l21MB_d0/stats.txt`
 

@@ -16,11 +16,17 @@ for d in "$OUT_DATA"/*; do
   DROW=$(echo "$base" | sed -E 's/.*_d([01]).*/\1/')
   S="$d/stats.txt"
 
-  SIMS=$(awk '/^sim_seconds/ {print $2}' "$S")
-  IPC=$(awk '/^system\.cpu\.ipc|^system\.cpu0\.ipc/ {print $2}' "$S" | head -n1)
-  CYC=$(awk '/^system\.cpu\.numCycles|^system\.cpu0\.numCycles/ {print $2}' "$S" | head -n1)
-  INST=$(awk '/^system\.cpu\.commit\.committedInsts|^system\.cpu0\.commit\.committedInsts/ {print $2}' "$S" | head -n1)
-  L2MR=$(awk '/^system\.l2\.overall_miss_rate::total/ {print $2}' "$S")
+  SIMS=$(awk '/^sim_seconds/ {print $2}' "$S" || echo "")
+  IPC=$(awk '/^system\.cpu\.ipc|^system\.cpu0\.ipc/ {print $2}' "$S" | head -n1 || echo "")
+  CYC=$(awk '/^system\.cpu\.numCycles|^system\.cpu0\.numCycles/ {print $2}' "$S" | head -n1 || echo "")
+  INST=$(awk '/^system\.cpu\.commit\.committedInsts|^system\.cpu0\.commit\.committedInsts/ {print $2}' "$S" | head -n1 || echo "")
+  L2MR=$(awk '/^system\.l2\.overall_miss_rate::total/ {print $2}' "$S" || echo "")
+  
+  # Check if stats.txt is empty or has no data
+  if [ ! -s "$S" ] || [ -z "$SIMS" ]; then
+    echo "[extract] WARNING: Empty or invalid stats.txt in $d"
+    SIMS="0"; IPC="0"; CYC="0"; INST="0"; L2MR="0"
+  fi
 
   echo "$W,$CORE,$DVFS,$L2,$DROW,$SIMS,$IPC,$CYC,$INST,$L2MR" >> "$CSV_DATA"
 done

@@ -3,7 +3,7 @@ import csv
 import os
 
 root = os.path.dirname(os.path.dirname(__file__))
-src = os.path.join(root, "results", "phase3_summary_energy.csv")
+src = os.path.join(root, "results", "summary_energy.csv")
 dst = os.path.join(root, "results", "phase3_drowsy_deltas.csv")
 
 # group by key without drowsy; compare d0 vs d1

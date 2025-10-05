@@ -23,12 +23,20 @@ if not os.path.exists(src):
 with open(src) as f:
     r = csv.DictReader(f)
     for row in r:
-        insts = float(row["insts"])
-        secs = float(row["sim_seconds"])
+        # Handle empty or invalid values
+        try:
+            insts = float(row["insts"]) if row["insts"] else 0.0
+            secs = float(row["sim_seconds"]) if row["sim_seconds"] else 0.0
+            mr = float(row["l2_miss_rate"]) if row["l2_miss_rate"] else 0.0
+        except (ValueError, TypeError):
+            print(f"[energy] WARNING: Invalid data in row: {row}")
+            insts = 0.0
+            secs = 0.0
+            mr = 0.0
+            
         core = row["core"]
-        drowsy = int(row["drowsy"])
+        drowsy = int(row["drowsy"]) if row["drowsy"] else 0
         epi = EPI_PJ.get(core, EPI_PJ["little"])
-        mr = float(row["l2_miss_rate"]) if row["l2_miss_rate"] else 0.0
 
         l2_misses = mr * insts
         energy = (epi * 1e-12) * insts + (E_MEM_PJ * 1e-12) * l2_misses
