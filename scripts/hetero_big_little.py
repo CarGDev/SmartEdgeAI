@@ -79,7 +79,7 @@ system.system_port = system.membus.slave
 proc = Process()
 proc.executable = args.cmd
 proc.cmd = [args.cmd]
-system.workload = SEWorkload.init_compatible(args.cmd)
+proc.env = {'GLIBC_TUNABLES': 'glibc.pthread.rseq=0'}
 for c in system.cpu:
     c.workload = proc
     c.createThreads()
