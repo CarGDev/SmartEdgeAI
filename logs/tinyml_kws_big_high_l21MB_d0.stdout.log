@@ -5,8 +5,8 @@ gem5 is copyrighted software; use the --copyright option for details.
 
 gem5 version 23.0.0.1
 gem5 compiled Aug 28 2025 18:18:37
-gem5 started Oct  5 2025 04:52:53
-gem5 executing on cargdevgpu, pid 2780594
+gem5 started Oct  8 2025 07:10:40
+gem5 executing on cargdevgpu, pid 3009767
 command line: /home/carlos/projects/gem5/gem5src/gem5/build/X86/gem5.opt /home/carlos/projects/gem5/gem5src/gem5/configs/example/gem5_library/x86-ubuntu-run.py --command=/home/carlos/projects/gem5/gem5-run/tinyml_kws --mem-size=16GB --cpu-type=O3CPU
 
 info: Using default config
